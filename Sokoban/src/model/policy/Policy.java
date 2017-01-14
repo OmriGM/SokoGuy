@@ -1,4 +1,4 @@
-package policies;
+package model.policy;
 
 public interface Policy  {
 	public boolean wallPolicy();

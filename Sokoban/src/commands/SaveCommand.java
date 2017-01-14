@@ -5,9 +5,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import levels.Level;
-import save.LevelSaver;
-import save.SaveFactory;
+import model.data.Level;
+import model.data.LevelSaver;
+import model.data.SaveFactory;
 
 public class SaveCommand implements Command {
 	String filename;

@@ -1,4 +1,4 @@
-package save;
+package model.data;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -1,17 +1,10 @@
-package load;
+package model.data;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import levels.Box;
-import levels.Character;
-import levels.Floor;
-import levels.Level;
-import levels.Target;
-import levels.Wall;
 
 
 public class MyTextLevelLoader implements LevelLoader  {

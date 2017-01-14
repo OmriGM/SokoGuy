@@ -1,6 +1,6 @@
 package commands;
 
-import levels.Level;
+import model.data.Level;
 import recivers.Displayer;
 
 public class DisplayLevelCommand implements Command {

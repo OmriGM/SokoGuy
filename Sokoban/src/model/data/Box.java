@@ -1,8 +1,8 @@
-package levels;
+package model.data;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import policies.Policy;
+import model.policy.Policy;
 
 public class Box extends GameObject implements MoveAble {
 	Policy policy;

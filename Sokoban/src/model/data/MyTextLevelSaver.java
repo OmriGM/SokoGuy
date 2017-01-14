@@ -1,15 +1,7 @@
-package save;
+package model.data;
 
 import java.io.OutputStream;
 import java.io.PrintWriter;
-
-import levels.Box;
-import levels.Character;
-import levels.Floor;
-import levels.GameObject;
-import levels.Level;
-import levels.Target;
-import levels.Wall;
 
 
 

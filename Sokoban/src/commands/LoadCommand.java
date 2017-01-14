@@ -5,9 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-import levels.Level;
-import load.LevelLoader;
-import load.LoadFactory;
+import model.data.Level;
+import model.data.LevelLoader;
+import model.data.LoadFactory;
 
 public class LoadCommand implements Command  {
 	String filename;

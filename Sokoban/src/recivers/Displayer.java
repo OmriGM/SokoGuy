@@ -1,12 +1,12 @@
 package recivers;
 
-import levels.Box;
-import levels.Character;
-import levels.Floor;
-import levels.GameObject;
-import levels.Level;
-import levels.Target;
-import levels.Wall;
+import model.data.Box;
+import model.data.Character;
+import model.data.Floor;
+import model.data.GameObject;
+import model.data.Level;
+import model.data.Target;
+import model.data.Wall;
 
 public class Displayer {
 

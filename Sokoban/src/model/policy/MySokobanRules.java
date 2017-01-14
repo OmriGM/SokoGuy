@@ -1,14 +1,14 @@
-package policies;
+package model.policy;
 
 import java.io.Serializable;
 
-public class MySokobanPolicy implements Policy,Serializable {
+public class MySokobanRules implements Policy,Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-public MySokobanPolicy() {
+public MySokobanRules() {
 	// TODO Auto-generated constructor stub
 }
 	@Override

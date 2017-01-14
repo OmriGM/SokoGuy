@@ -1,4 +1,4 @@
-package levels;
+package model.data;
 
 public class Wall extends GameObject {
 

@@ -1,10 +1,10 @@
-package levels;
+package model.data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import policies.MySokobanPolicy;
-import policies.Policy;
+import model.policy.MySokobanRules;
+import model.policy.Policy;
 
 public class Level implements Serializable {
 	
@@ -29,7 +29,7 @@ public Level() {
 	public Level(int rows,int lines) {
 		movAbleTable=new GameObject[rows][lines];
 		backgroundObjects=new GameObject[rows][lines];
-		policy=new MySokobanPolicy();
+		policy=new MySokobanRules();
 		boxArray=new ArrayList();
 		characterArray=new ArrayList();
 		wallArray=new ArrayList();

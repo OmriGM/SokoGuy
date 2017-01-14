@@ -1,7 +1,7 @@
 package commands;
 
-import levels.Character;
-import levels.Level;
+import model.data.Character;
+import model.data.Level;
 
 public class MoveCommand implements Command {
 	String direction;

@@ -1,8 +1,6 @@
-package save;
+package model.data;
 
 import java.util.HashMap;
-
-import levels.Level;
 
 public class SaveFactory {
 	Level lvl;
