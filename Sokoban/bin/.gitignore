@@ -1,11 +1,6 @@
-/RunGame.class
-/commands/
-/levels/
-/load/
-/policies/
-/recivers/
-/save/
-/model/
-/controller/
-/view/
 /Boot/
+/commands/
+/controller/
+/model/
+/recivers/
+/view/
