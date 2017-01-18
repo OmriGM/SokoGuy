@@ -1,13 +1,16 @@
 package controller.commands;
 
-public class ExitCommand implements Command {
-	CLI c;
-public ExitCommand(CLI c) {
-	this.c=c;
+import model.Model;
+
+public class ExitCommand extends Command {
+	Model model;
+public ExitCommand(Model model) {
+	this.model=model;
 }
+
 	@Override
 	public void Execute() {
-		c.gamerun=false;
+		
 		System.out.println("BYE BYE");
 	}
 }

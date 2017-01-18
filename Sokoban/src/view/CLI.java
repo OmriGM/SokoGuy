@@ -1,11 +1,17 @@
-package controller.commands;
+package view;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import model.data.Level;
+import common.Level;
+import controller.commands.Command;
+import controller.commands.DisplayLevelCommand;
+import controller.commands.ExitCommand;
+import controller.commands.LoadCommand;
+import controller.commands.MoveCommand;
+import controller.commands.SaveCommand;
 
 public class CLI {
 	Command c;

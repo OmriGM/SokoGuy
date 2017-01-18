@@ -3,6 +3,8 @@ package model.data;
 import java.beans.XMLEncoder;
 import java.io.OutputStream;
 
+import common.Level;
+
 public class MyXMLLevelSaver implements LevelSaver {
 	Level lvl;
 	public MyXMLLevelSaver(Level lvl) {

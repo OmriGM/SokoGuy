@@ -1,21 +1,26 @@
 package controller.commands;
 
-import model.data.Level;
+import common.Level;
+import model.Model;
 import recivers.Displayer;
+import view.View;
 
-public class DisplayLevelCommand implements Command {
-	Level lvl;
-	Displayer displayer;
-	public DisplayLevelCommand(Level lvl) {
-		this.lvl=lvl;
-		displayer=new Displayer();
+public class DisplayLevelCommand extends Command {
+	Model model;
+	View view;
+	//Displayer displayer;
+	
+	public DisplayLevelCommand(Model model,View view) {
+		this.model=model;
+		this.view=view;
+		//displayer=new Displayer();
 	}
 	
 	
 	@Override
 	public void Execute() {
-		displayer.Display(lvl);
-		
+		Level lvl = model.GetLvl();
+		view.displayLevel(lvl);
 	}
 
 

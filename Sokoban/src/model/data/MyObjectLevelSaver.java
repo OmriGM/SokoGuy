@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
+import common.Level;
+
 public class MyObjectLevelSaver implements LevelSaver {
 	Level lvl;
 	public MyObjectLevelSaver(Level lvl	) {

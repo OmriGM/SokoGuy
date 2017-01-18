@@ -1,10 +1,10 @@
 package recivers;
 
-import model.data.Box;
-import model.data.Character;
+import common.Box;
+import common.Character;
+import common.Level;
 import model.data.Floor;
 import model.data.GameObject;
-import model.data.Level;
 import model.data.Target;
 import model.data.Wall;
 

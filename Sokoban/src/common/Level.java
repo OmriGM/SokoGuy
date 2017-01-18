@@ -1,8 +1,11 @@
-package model.data;
+package common;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import model.data.GameObject;
+import model.data.Target;
+import model.data.Wall;
 import model.policy.MySokobanRules;
 import model.policy.Policy;
 

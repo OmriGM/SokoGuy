@@ -1,11 +1,11 @@
 package Boot;
 import controller.MyController;
 import model.MyModel;
-import view.MyView;
+import view.GUI;
 public class Run {
 
 	public static void main(String[] args) {
-		MyView ui= new MyView();
+		GUI ui= new GUI();
 		MyModel m = new MyModel();
 		MyController c=new MyController(ui, m);
 		ui.addObserver(c);

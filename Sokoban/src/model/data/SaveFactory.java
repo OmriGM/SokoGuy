@@ -2,6 +2,8 @@ package model.data;
 
 import java.util.HashMap;
 
+import common.Level;
+
 public class SaveFactory {
 	Level lvl;
 	HashMap<String,SaveCreator> LevelCreators ;

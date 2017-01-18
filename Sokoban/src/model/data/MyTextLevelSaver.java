@@ -3,6 +3,10 @@ package model.data;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 
+import common.Box;
+import common.Character;
+import common.Level;
+
 
 
 public class MyTextLevelSaver implements LevelSaver {
