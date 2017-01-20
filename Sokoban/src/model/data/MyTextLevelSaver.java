@@ -5,7 +5,10 @@ import java.io.PrintWriter;
 
 import common.Box;
 import common.Character;
+import common.Floor;
 import common.Level;
+import common.Target;
+import common.Wall;
 
 
 

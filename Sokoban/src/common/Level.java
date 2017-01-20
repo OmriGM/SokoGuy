@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.data.GameObject;
-import model.data.Target;
-import model.data.Wall;
 import model.policy.MySokobanRules;
 import model.policy.Policy;
 
@@ -56,7 +54,7 @@ public Level() {
 		else return false;	
 	}
 	public boolean isOnTarget(Box b){
-		if(backgroundObjects[b.getX()][b.getY()]instanceof Target)
+		if(backgroundObjects[b.getPos().getX()][b.getPos().getY()]instanceof Target)
 			return true;
 		else return false;	
 	}
@@ -85,13 +83,13 @@ public Level() {
 		this.movAbleTable = movAbleTable;
 	}
 	public void setMovAbleTable(GameObject x) {
-		this.movAbleTable[x.getX()][x.getY()] = x;
+		this.movAbleTable[x.getPos().getX()][x.getPos().getY()] = x;
 	}
 	public GameObject getBackgroundObjects(int x,int y) {
 		return backgroundObjects[x][y];
 	}
 	public void setBackgroundObjects(GameObject x) {
-		this.backgroundObjects[x.getX()][x.getY()]=x;
+		this.backgroundObjects[x.getPos().getX()][x.getPos().getY()]=x;
 	}
 	public ArrayList<GameObject> getBoxArray() {
 		return boxArray;
@@ -154,7 +152,38 @@ public Level() {
 	public void setBoxontarget(int boxontarget) {
 		this.boxontarget = boxontarget;
 	}
-	
+	public GameObject getNearObj(Position pos, String direction){
+		switch (direction) {
+		case "Up":
+		case "up":
+			if (getMovAbleTable(pos.getX()-1, pos.getY())==null)
+				return getBackgroundObjects(pos.getX()-1, pos.getY());
+			else return getMovAbleTable(pos.getX()-1,pos.getY());
+			
+			
+		case "Down":
+		case "down":
+			if (getMovAbleTable(pos.getX()+1, pos.getY())==null)
+				return getBackgroundObjects(pos.getX()+1, pos.getY());
+			else return getMovAbleTable(pos.getX()+1,pos.getY());
+			
+		case "Left":
+		case "left":
+			if (getMovAbleTable(pos.getX(), pos.getY()-1)==null)
+				return getBackgroundObjects(pos.getX(), pos.getY()-1);
+			else return getMovAbleTable(pos.getX(),pos.getY()-1);
+			
+		case "Right":
+		case "right":
+			if (getMovAbleTable(pos.getX(), pos.getY()+1)==null)
+				return getBackgroundObjects(pos.getX(), pos.getY()+1);
+			else return getMovAbleTable(pos.getX(),pos.getY()+1);
+			
+		default:
+			return null;
+			
+		}
+	}
 	
 }
 	

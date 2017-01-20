@@ -2,11 +2,11 @@ package recivers;
 
 import common.Box;
 import common.Character;
+import common.Floor;
 import common.Level;
-import model.data.Floor;
+import common.Target;
+import common.Wall;
 import model.data.GameObject;
-import model.data.Target;
-import model.data.Wall;
 
 public class Displayer {
 

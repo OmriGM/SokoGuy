@@ -2,34 +2,29 @@ package model.data;
 
 import java.io.Serializable;
 
+import common.Position;
+
 public class GameObject implements Serializable{
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-public GameObject() {
-}
-	public GameObject(int x, int y) {
-		setX(x);
-		setY(y);
+	
+	//Default constructor
+	public GameObject() {}
+	
+	public GameObject(Position pos) {
+		this.pos=pos;
 	}
-	protected int x, y;
+	protected Position pos;
 
-	public int getX() {
-		return x;
-	}
-
-	public void setX(int x) {
-		this.x = x;
+	public Position getPos() {
+		return pos;
 	}
 
-	public int getY() {
-		return y;
+	public void setPos(Position pos) {
+		this.pos = pos;
 	}
 
-	public void setY(int y) {
-		this.y = y;
-	}
+	
 	
 }

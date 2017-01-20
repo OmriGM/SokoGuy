@@ -8,7 +8,11 @@ import java.util.ArrayList;
 
 import common.Box;
 import common.Character;
+import common.Floor;
 import common.Level;
+import common.Position;
+import common.Target;
+import common.Wall;
 
 
 public class MyTextLevelLoader implements LevelLoader  {
@@ -41,41 +45,41 @@ public class MyTextLevelLoader implements LevelLoader  {
 				for(int j=0;j<result.length();j++){
 					
 					if(result.charAt(j)=='#'){
-						lvl.setBackgroundObjects(new Wall(i,j));
+						lvl.setBackgroundObjects(new Wall(new Position(i,j)));
 						lvl.getWallArray().add(lvl.getBackgroundObjects(i,j));
 						
 							
 					}
 					else if(result.charAt(j)=='o'){
-						lvl.setBackgroundObjects(new Target(i,j));
+						lvl.setBackgroundObjects(new Target(new Position(i,j)));
 						lvl.getTargetArray().add
 							(lvl.getBackgroundObjects(i,j));
 					}
 					else if(result.charAt(j)==' '){
-						lvl.setBackgroundObjects(new Floor(i,j));
+						lvl.setBackgroundObjects(new Floor(new Position(i,j)));
 						lvl.getFloorArray().add
 							(lvl.getBackgroundObjects(i,j));
 					}
 					else if(result.charAt(j)=='A'){
-						lvl.setMovAbleTable(new Character(i,j));
+						lvl.setMovAbleTable(new Character(new Position(i,j)));
 						lvl.getCharacterArray().add
 							(lvl.getMovAbleTable(i,j));
-						lvl.setBackgroundObjects(new Floor(i,j));
+						lvl.setBackgroundObjects(new Floor(new Position(i,j)));
 						lvl.getFloorArray().add
 							(lvl.getBackgroundObjects(i,j));
 						}
 					else if(result.charAt(j)=='@'){
-						lvl.setMovAbleTable(new Box(i,j));
+						lvl.setMovAbleTable(new Box(new Position(i,j)));
 						lvl.getBoxArray().add
 							(lvl.getMovAbleTable(i,j));
-						lvl.setBackgroundObjects(new Floor(i,j));
+						lvl.setBackgroundObjects(new Floor(new Position(i,j)));
 						lvl.getFloorArray().add
 							(lvl.getBackgroundObjects(i,j));
 						
 						}
 					else if (result.charAt(j)=='+'){
-						lvl.setMovAbleTable(new Box(i,j));
-						lvl.setBackgroundObjects(new Target(i,j));
+						lvl.setMovAbleTable(new Box(new Position(i,j)));
+						lvl.setBackgroundObjects(new Target(new Position(i,j)));
 						lvl.getBoxArray().add
 							(lvl.getMovAbleTable(i,j));
 						lvl.getTargetArray().add
@@ -83,10 +87,10 @@ public class MyTextLevelLoader implements LevelLoader  {
 						lvl.setBoxontarget(lvl.getBoxontarget()+1);
 						}
 					else if (result.charAt(j)=='a'){
-						lvl.setMovAbleTable(new Character(i,j));
+						lvl.setMovAbleTable(new Character(new Position(i,j)));
 						lvl.getCharacterArray().add
 							(lvl.getMovAbleTable(i,j));
-						lvl.setBackgroundObjects(new Target(i,j));
+						lvl.setBackgroundObjects(new Target(new Position(i,j)));
 						lvl.getTargetArray().add
 							(lvl.getBackgroundObjects(i,j));
 						}

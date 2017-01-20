@@ -1,7 +1,6 @@
 package model;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,10 +15,12 @@ import model.data.LevelLoader;
 import model.data.LevelSaver;
 import model.data.LoadFactory;
 import model.data.SaveFactory;
+import model.policy.MyPolicy;
+import model.policy.Policy;
 
 public class MyModel extends Observable implements Model {
 	Level lvl;
-	Character c;
+	Policy p=new MyPolicy();
 	
 	@Override
 	public Level GetLvl() {
@@ -29,8 +30,7 @@ public class MyModel extends Observable implements Model {
 	@Override
 	public void Move(String direction) {
 		boolean moveHappen;
-		this.c=(Character)lvl.getCharacterArray().get(0);
-		moveHappen=	c.move(lvl, direction);
+		moveHappen=	(p.move(lvl, direction)>0);
 		if (moveHappen){
 			if(lvl.Finish()){
 				this.setChanged();
