@@ -9,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 
-import common.Character;
 import common.Level;
 import model.data.LevelLoader;
 import model.data.LevelSaver;

@@ -8,7 +8,11 @@ import java.util.Observer;
 
 import controller.commands.Command;
 import controller.commands.DisplayLevelCommand;
+import controller.commands.ExitCommand;
+import controller.commands.FinishedCommand;
+import controller.commands.LoadCommand;
 import controller.commands.MoveCommand;
+import controller.commands.SaveCommand;
 import model.Model;
 import view.View;
 
@@ -29,11 +33,16 @@ public class MyController implements Controller,Observer{
 		commands=new HashMap<String,Command>();
 		commands.put("move", new MoveCommand(model));
 		commands.put("display lvl", new DisplayLevelCommand(model,view));
+		commands.put("load", new LoadCommand(model));
+		commands.put("save", new SaveCommand(model));
+		commands.put("exit", new ExitCommand(model));
+		commands.put("lvl finished", new FinishedCommand(view));
 		
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		List<String> params=(List<String>) arg;
+		System.out.println("Checking if  i got here(Update function)");
+		List<String> params=(List<String>)arg;
 		String commandkey=params.remove(0);
 		Command c= commands.get(commandkey);
 		//TO DO: display error when c is null

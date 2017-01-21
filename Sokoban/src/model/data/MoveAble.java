@@ -1,9 +1,8 @@
 package model.data;
 
-import common.Level;
+import javafx.scene.image.Image;
 
 public interface MoveAble {
 	//public GameObject getNearObj(Level lvl,String direction);
 //	public boolean move(Level lvl,String direction);
-
 }

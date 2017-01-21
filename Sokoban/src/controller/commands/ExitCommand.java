@@ -1,16 +1,20 @@
 package controller.commands;
 
+import com.sun.glass.ui.View;
+
 import model.Model;
 
 public class ExitCommand extends Command {
 	Model model;
-public ExitCommand(Model model) {
-	this.model=model;
-}
+	View view;
+	public ExitCommand(Model model) {
+		this.model=model;
+		this.view=view;
+	}
 
 	@Override
 	public void Execute() {
-		
-		System.out.println("BYE BYE");
+//		model.exit();
+//		view.exit();
 	}
 }

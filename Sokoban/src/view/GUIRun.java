@@ -1,15 +1,37 @@
-package Boot;
-import controller.MyController;
-import model.MyModel;
-import view.GUI;
-public class Run {
+package view;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
-	public static void main(String[] args) {
-		GUI ui= new GUI();
-		MyModel m = new MyModel();
-		MyController c=new MyController(ui, m);
-		ui.addObserver(c);
-		m.addObserver(c);
+
+public class GUIRun extends Application implements Runnable{
+		private String[] args;
+		
+	
+			public void runTheGUI(String[] args){
+				this.args=args;
+				this.run();
+			}
+			@Override
+			public void start(Stage primaryStage) {
+				try {
+					BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("SokobanWindow.fxml"));
+					Scene scene = new Scene(root,400,400);
+					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+					primaryStage.setScene(scene);
+					primaryStage.show();
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
+			}
+			@Override
+			public void run() {
+				launch(args);				
+			}	
+}
+
 		
 //		CLI commandline=new CLI();
 //		
@@ -30,6 +52,6 @@ public class Run {
 //		commandline.commands();
 //
 //		
-	}
-		
-}
+//	}
+//		
+//}
