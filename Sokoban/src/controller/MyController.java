@@ -35,7 +35,7 @@ public class MyController implements Controller,Observer{
 		commands.put("display lvl", new DisplayLevelCommand(model,view));
 		commands.put("load", new LoadCommand(model));
 		commands.put("save", new SaveCommand(model));
-		commands.put("exit", new ExitCommand(model));
+	//	commands.put("exit", new ExitCommand(model,view));
 		commands.put("lvl finished", new FinishedCommand(view));
 		
 	}

@@ -8,5 +8,6 @@ public interface View {
 	void exit();
 	void displayLevel(Level lvl);
 	public void openFile();
+	public void saveFile();
 	
 }

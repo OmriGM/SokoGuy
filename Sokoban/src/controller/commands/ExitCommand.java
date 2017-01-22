@@ -7,7 +7,7 @@ import model.Model;
 public class ExitCommand extends Command {
 	Model model;
 	View view;
-	public ExitCommand(Model model) {
+	public ExitCommand(Model model,View view) {
 		this.model=model;
 		this.view=view;
 	}

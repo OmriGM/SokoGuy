@@ -12,6 +12,7 @@ public LoadCommand(Model model) {
 	@Override
 	public void Execute()  {
 		String filename=params.get(0);
+		System.out.println(filename);
 		model.load(filename);
 	}
 
