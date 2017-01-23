@@ -8,10 +8,13 @@ import java.util.Observable;
 import java.util.ResourceBundle;
 
 import common.Level;
+import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -21,20 +24,22 @@ import javafx.stage.Stage;
 public class SokobanViewer extends Observable implements View,Initializable {
 	@FXML
 	SokobanDisplayer sokobanDisplayer;
-	Level lvl;
 	@FXML
 	Label stepCounter;
+	
+    boolean finishedLvl=false;
+	Level lvl;
+	Stage stage;
+	
 	@Override
 	public void bindCounter(IntegerProperty stepCounter) {
-		this.stepCounter.textProperty().bind(stepCounter.asString());
-		
+		this.stepCounter.textProperty().bind(stepCounter.asString());	
 	}
-
 
 	@Override
 	public void displayLevel(Level lvl) {
 		sokobanDisplayer.setLvl(lvl);	
-		this.lvl=lvl;
+		
 	}
 
 	public void openFile(){
@@ -50,6 +55,7 @@ public class SokobanViewer extends Observable implements View,Initializable {
 				params.add(filename);
 			setChanged();		
 			notifyObservers(params);
+			finishedLvl=false;
 		}
 	}
 
@@ -75,64 +81,72 @@ public class SokobanViewer extends Observable implements View,Initializable {
 		notifyObservers(params);	
 	}
 	
-
+	public void setStage(Stage primaryStage) {
+		stage=primaryStage;	
+	}
+	
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		//sokobanDisplayer.setLvl(lvl);
-		sokobanDisplayer.setFocusTraversable(true);
-	//	sokobanDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED,(e)->sokobanDisplayer.requestFocus());
-		sokobanDisplayer.setOnKeyPressed(new EventHandler<KeyEvent>() {
-			
+	public void Exit() {	
+		stage.close();
+	}
+	
+	public void lvlFinished(){
+		finishedLvl=true;
+		Platform.runLater(new Runnable() {
 			@Override
-			public void handle(KeyEvent event) {
-				
-				if(event.getCode()==KeyCode.UP){
-					List<String> params=new ArrayList<String>();
-					params.add("move");	
-					params.add("up");
-					setChanged();
-					notifyObservers(params);					
-				}
-				if(event.getCode()==KeyCode.DOWN){
-					List<String> params=new ArrayList<String>();
-					params.add("move");	
-					params.add("down");
-					setChanged();
-					notifyObservers(params);					
-				}
-				if(event.getCode()==KeyCode.LEFT){
-					List<String> params=new ArrayList<String>();
-					params.add("move");	
-					params.add("left");
-					setChanged();
-					notifyObservers(params);					
-				}
-				if(event.getCode()==KeyCode.RIGHT){
-					List<String> params=new ArrayList<String>();
-					params.add("move");	
-					params.add("right");
-					setChanged();
-					notifyObservers(params);					
-				}
-
+			public void run() {
+				Alert alert = new Alert(AlertType.INFORMATION);
+		        alert.setTitle("Level Finished");
+		        alert.setHeaderText("You Won! Congrats!");
+		        alert.setContentText("Press OK and load a new level");
+		        alert.showAndWait();				
 			}
-			
 		});
 	}
 
 	@Override
-	public void Exit() {
+	public void initialize(URL location, ResourceBundle resources) {
+		sokobanDisplayer.setFocusTraversable(true);
+		//	sokobanDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED,(e)->sokobanDisplayer.requestFocus());
 		
+			sokobanDisplayer.setOnKeyPressed(new EventHandler<KeyEvent>() {
+				
+				@Override
+				public void handle(KeyEvent event) {
+					if(!finishedLvl){
+						if(event.getCode()==KeyCode.UP){
+							List<String> params=new ArrayList<String>();
+							params.add("move");	
+							params.add("up");
+							setChanged();
+							notifyObservers(params);					
+						}
+						if(event.getCode()==KeyCode.DOWN){
+							List<String> params=new ArrayList<String>();
+							params.add("move");	
+							params.add("down");
+							setChanged();
+							notifyObservers(params);					
+						}
+						if(event.getCode()==KeyCode.LEFT){
+							List<String> params=new ArrayList<String>();
+							params.add("move");	
+							params.add("left");
+							setChanged();
+							notifyObservers(params);					
+						}
+						if(event.getCode()==KeyCode.RIGHT){
+							List<String> params=new ArrayList<String>();
+							params.add("move");	
+							params.add("right");
+							setChanged();
+							notifyObservers(params);					
+						}
+					}
+				}			
+			});	
 		
 	}
 
 	
-
 }
-
-
-
-
-
-
-

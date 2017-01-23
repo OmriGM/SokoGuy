@@ -10,5 +10,6 @@ public interface View {
 	public void saveFile();
 	void ExitCommand();
 	void bindCounter(IntegerProperty stepCounter);
+	void lvlFinished();
 	
 }

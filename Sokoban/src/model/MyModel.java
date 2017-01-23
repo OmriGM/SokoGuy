@@ -36,8 +36,11 @@ public class MyModel extends Observable implements Model {
 			if(lvl.Finish()){
 				this.setChanged();
 				List<String> params=new LinkedList<String>();
-				//params.add("lvl finished");
 				params.add("display lvl");
+				this.notifyObservers(params);
+				this.setChanged();
+				params=new LinkedList<String>();
+				params.add("lvl finished");
 				this.notifyObservers(params);
 			}
 			else{

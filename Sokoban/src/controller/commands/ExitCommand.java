@@ -2,6 +2,7 @@ package controller.commands;
 
 
 import controller.Controller;
+import javafx.application.Platform;
 import model.Model;
 import view.View;
 
@@ -19,7 +20,15 @@ public class ExitCommand extends Command {
 	public void Execute() {
 		
 		model.Exit();
-		view.Exit();
+		
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				view.Exit();
+				
+			}
+		});
 		controller.Stop();
 	}
 }

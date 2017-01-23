@@ -10,13 +10,13 @@ import model.MyModel;
 
 public class GUIRun extends Application implements Runnable{
 		private String[] args;
-		private boolean stop=false;
-		
-		
-
-		public void setStop(boolean stop) {
-			this.stop = stop;
-		}
+//		private boolean stop=false;
+//		
+//		
+//
+//		public void setStop(boolean stop) {
+//			this.stop = stop;
+//		}
 
 
 			public void runTheGUI(String[] args){
@@ -34,8 +34,7 @@ public class GUIRun extends Application implements Runnable{
 					BorderPane root = fxmlLoader.load();
 					Scene scene = new Scene(root,600,500);
 					SokobanViewer ui = fxmlLoader.getController();
-					
-					
+					ui.setStage(primaryStage);		
 					MyModel model = new MyModel();
 					MyController c= new MyController(ui,model);
 					model.addObserver(c);
@@ -44,10 +43,7 @@ public class GUIRun extends Application implements Runnable{
 					primaryStage.setScene(scene);
 					primaryStage.show();
 					
-		
-					
-					
-					
+					//primaryStage.close();
 					
 				} catch(Exception e) {
 					e.printStackTrace();

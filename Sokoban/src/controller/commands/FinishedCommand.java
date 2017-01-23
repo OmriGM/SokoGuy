@@ -12,9 +12,9 @@ public class FinishedCommand extends Command {
 		this.view=view;
 	}
 	@Override
-	public void Execute() throws IOException {
+	public void Execute() {
 		
-		//view.displayLevel(lvl);
+		view.lvlFinished();
 	}
 
 }

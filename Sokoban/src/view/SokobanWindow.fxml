@@ -13,6 +13,7 @@
 
 <BorderPane  xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SokobanViewer">
    <top>
+   
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -35,14 +36,15 @@
         </menus>
       </MenuBar>
    </top>
+
    <left>
-   <VBox prefHeight="200.0" prefWidth="67.0" BorderPane.alignment="CENTER_LEFT">
-  	 <children>
-    	  <Label fx:id="stepCounter" prefHeight="17.0" prefWidth="298.0" text="Counter: "  />
-    	     </children>
-      </VBox>  
+   		 <VBox prefHeight="200.0" prefWidth="67.0" BorderPane.alignment="CENTER_RIGHT">
+  	 		<children>
+    	  		<Label fx:id="stepCounter" prefHeight="17.0" prefWidth="100.0" text="Counter: "  />
+  		    </children>
+         </VBox> 
    </left>
-   <center>
+   <center>  		 
       <SokobanDisplayer fx:id="sokobanDisplayer"  height="350.0" width="350.0" BorderPane.alignment="CENTER"
        characterFileName="./resources/player.png"
        wallFileName="./resources/wall.jpg"
