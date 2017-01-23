@@ -1,10 +1,6 @@
 package view;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import controller.MyController;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -14,15 +10,15 @@ import model.MyModel;
 
 public class GUIRun extends Application implements Runnable{
 		private String[] args;
-
+		private boolean stop=false;
 		
 		
 
-		public void initialize(URL location, ResourceBundle resources) {
-			// TODO Auto-generated method stub
-			
+		public void setStop(boolean stop) {
+			this.stop = stop;
 		}
-	
+
+
 			public void runTheGUI(String[] args){
 				
 			
@@ -37,18 +33,22 @@ public class GUIRun extends Application implements Runnable{
 					FXMLLoader fxmlLoader = new FXMLLoader(SokobanViewer.class.getResource("SokobanWindow.fxml"));
 					BorderPane root = fxmlLoader.load();
 					Scene scene = new Scene(root,600,500);
-					
 					SokobanViewer ui = fxmlLoader.getController();
+					
 					
 					MyModel model = new MyModel();
 					MyController c= new MyController(ui,model);
 					model.addObserver(c);
-					
 		            ui.addObserver(c);
-					
 					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 					primaryStage.setScene(scene);
 					primaryStage.show();
+					
+		
+					
+					
+					
+					
 				} catch(Exception e) {
 					e.printStackTrace();
 				}

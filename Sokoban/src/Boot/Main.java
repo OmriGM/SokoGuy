@@ -1,9 +1,8 @@
 package Boot;
 
-import controller.MyController;
-import model.MyModel;
+
 import view.GUIRun;
-import view.SokobanViewer;
+
 
 public class Main {
 	public static void main(String[] args) {

@@ -31,6 +31,8 @@ public class MyModel extends Observable implements Model {
 		boolean moveHappen;
 		moveHappen=	(p.move(lvl, direction)>0);
 		if (moveHappen){
+			lvl.setStepCounter(lvl.getStepCounter()+1);
+			System.out.println(lvl.getStepCounter());
 			if(lvl.Finish()){
 				this.setChanged();
 				List<String> params=new LinkedList<String>();
@@ -81,5 +83,11 @@ public class MyModel extends Observable implements Model {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}	
+	}
+
+	@Override
+	public void Exit() {
+		// TODO close server
+		
 	}
 }

@@ -5,7 +5,7 @@ package controller.commands;
 import common.Character;
 import common.Level;
 import model.Model;
-import view.View;
+
 
 public class MoveCommand extends Command {
 

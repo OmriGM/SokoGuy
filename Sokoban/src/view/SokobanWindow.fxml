@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import view.SokobanDisplayer?>
+<?import javafx.scene.control.Label?>
 
 <BorderPane  xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SokobanViewer">
    <top>
@@ -18,7 +19,7 @@
             <items>
                   <MenuItem mnemonicParsing="false" text="Open level" onAction="#openFile" />
                   <MenuItem mnemonicParsing="false" text="Save level" onAction="#saveFile" />   
-                  <MenuItem mnemonicParsing="false" text="Close" />
+                  <MenuItem mnemonicParsing="false" text="Close" onAction="#ExitCommand" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -35,7 +36,11 @@
       </MenuBar>
    </top>
    <left>
-      
+   <VBox prefHeight="200.0" prefWidth="67.0" BorderPane.alignment="CENTER_LEFT">
+  	 <children>
+    	  <Label fx:id="stepCounter" prefHeight="17.0" prefWidth="298.0" text="Counter: "  />
+    	     </children>
+      </VBox>  
    </left>
    <center>
       <SokobanDisplayer fx:id="sokobanDisplayer"  height="350.0" width="350.0" BorderPane.alignment="CENTER"
@@ -43,6 +48,7 @@
        wallFileName="./resources/wall.jpg"
        targetFileName="./resources/target.jpg"
        boxFileName="./resources/box.jpg"
-       floorFileName="./resources/floor.png" />
+       floorFileName="./resources/floor.jpg" 
+       boxTargetFileName="./resources/boxTarget.jpg" />
    </center>
 </BorderPane>

@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 
 import common.Box;
 import common.Character;
-import common.Floor;
 import common.Level;
 import common.Target;
 import common.Wall;
@@ -24,6 +23,7 @@ public class SokobanDisplayer extends Canvas {
 	StringProperty wallFileName=new SimpleStringProperty();
 	StringProperty floorFileName=new SimpleStringProperty();
 	StringProperty targetFileName=new SimpleStringProperty();
+	StringProperty boxTargetFileName=new SimpleStringProperty();
 
 	public String getBoxFileName() {
 		return boxFileName.get();
@@ -31,6 +31,13 @@ public class SokobanDisplayer extends Canvas {
 
 	public void setBoxFileName(String boxFileName) {
 		this.boxFileName.set(boxFileName);
+	}
+	public String getBoxTargetFileName() {
+		return boxTargetFileName.get();
+	}
+
+	public void setBoxTargetFileName(String boxTargetFileName) {
+		this.boxTargetFileName.set(boxTargetFileName);
 	}
 
 	public String getWallFileName() {
@@ -87,6 +94,7 @@ public class SokobanDisplayer extends Canvas {
 			Image box=null;
 			Image floor=null;
 			Image target=null;
+			Image boxTarget=null;
 						
 			try {
 				wall=new Image(new FileInputStream(wallFileName.get()));
@@ -94,22 +102,24 @@ public class SokobanDisplayer extends Canvas {
 				box=new Image(new FileInputStream(boxFileName.get()));
 				floor=new Image(new FileInputStream(floorFileName.get()));
 				target=new Image(new FileInputStream(targetFileName.get()));
+				boxTarget=new Image(new FileInputStream(boxTargetFileName.get()));
+			
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
 			
 			gc.clearRect(0, 0, W, H);	
-			
+			gc.drawImage(floor, 0, 0, W, H);
 			for(int i=0;i<rowLength;i++){
 				for(int j=0;j<lineLength;j++){
 					//draws floors
-					if(lvl.getBackgroundObjects(i, j) instanceof Floor)			
-						if(floor!=null)
-							gc.drawImage(floor, j*w, i*h, w, h);
-						else {
-							gc.setFill(Color.BLUEVIOLET);
-							gc.fillRect(j*w, i*h, w, h);
-						}
+//					if(lvl.getBackgroundObjects(i, j) instanceof Floor)			
+//						if(floor!=null)
+//							gc.drawImage(floor, j*w, i*h, w, h);
+//						else {
+//							gc.setFill(Color.BLUEVIOLET);
+//							gc.fillRect(j*w, i*h, w, h);
+//						}
 					//draws targets
 					if(lvl.getBackgroundObjects(i, j) instanceof Target)
 						if(target!=null)
@@ -123,18 +133,29 @@ public class SokobanDisplayer extends Canvas {
 						//System.out.println("wall");
 						if(wall!=null)
 							gc.drawImage(wall, j*w, i*h, w, h);
-						else 
+						else {
 							gc.setFill(Color.GREEN);
 							gc.fillRect(j*w, i*h, w, h);
-						gc.drawImage(wall, j*w, i*h, w, h);		
+						}
+						
 					}
 					//draw boxes
 					if(lvl.getMovAbleTable(i, j) instanceof Box){
-						if(box!=null)
-							gc.drawImage(box,j*w,i*h, w, h);
-						else{
-							gc.setFill(Color.YELLOW);
-							gc.fillOval(j*w,i*h, w, h);
+						if(lvl.getBackgroundObjects(i, j)instanceof Target){
+							if(box!=null)
+								gc.drawImage(boxTarget,j*w,i*h, w, h);
+							else{
+								gc.setFill(Color.YELLOW);
+								gc.fillOval(j*w,i*h, w, h);
+							}
+						}
+						else {
+							if(box!=null)
+								gc.drawImage(box,j*w,i*h, w, h);
+							else{
+								gc.setFill(Color.YELLOW);
+								gc.fillOval(j*w,i*h, w, h);
+							}
 						}
 					}
 					//draw characters
@@ -150,6 +171,8 @@ public class SokobanDisplayer extends Canvas {
 			}							
 		}
 	}
+
+
 }	
 
 

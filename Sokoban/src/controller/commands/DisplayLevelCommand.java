@@ -2,7 +2,6 @@ package controller.commands;
 
 import common.Level;
 import model.Model;
-import recivers.Displayer;
 import view.View;
 
 public class DisplayLevelCommand extends Command {

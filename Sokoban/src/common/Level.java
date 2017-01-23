@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import model.data.GameObject;
-import model.policy.MySokobanRules;
-import model.policy.Policy;
 
 public class Level implements Serializable {
 	
@@ -13,9 +11,8 @@ public class Level implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	int score=0;
+	int stepCounter=0;
 	int boxontarget=0;
-	Policy policy;
 	
 	GameObject[][]  movAbleTable;
 	GameObject[][]  backgroundObjects;
@@ -30,7 +27,6 @@ public Level() {
 	public Level(int rows,int lines) {
 		movAbleTable=new GameObject[rows][lines];
 		backgroundObjects=new GameObject[rows][lines];
-		policy=new MySokobanRules();
 		boxArray=new ArrayList();
 		characterArray=new ArrayList();
 		wallArray=new ArrayList();
@@ -67,10 +63,6 @@ public Level() {
 	//returns character
 	public GameObject characterLocation(int x){
 		return characterArray.get(x);	
-	}
-	//get current score
-	public int getScore(){
-		return score;
 	}
 	//returns movable table
 	public GameObject[][] getMovAbleTable() {
@@ -121,17 +113,8 @@ public Level() {
 	public void setTargetArray(ArrayList<GameObject> targetArray) {
 		this.targetArray = targetArray;
 	}
-	public void setScore(int score) {
-		this.score = score;
-	}
 	public void Object(GameObject[][] backgroundObjects) {
 		this.backgroundObjects = backgroundObjects;
-	}
-	public Policy getPolicy() {
-		return policy;
-	}
-	public void setPolicy(Policy policy) {
-		this.policy = policy;
 	}
 	public GameObject[][] getBackgroundObjects() {
 		return backgroundObjects;
@@ -151,6 +134,12 @@ public Level() {
 	}
 	public void setBoxontarget(int boxontarget) {
 		this.boxontarget = boxontarget;
+	}
+	public int getStepCounter() {
+		return stepCounter;
+	}
+	public void setStepCounter(int stepCounter) {
+		this.stepCounter = stepCounter;
 	}
 	public GameObject getNearObj(Position pos, String direction){
 		switch (direction) {

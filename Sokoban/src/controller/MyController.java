@@ -13,6 +13,10 @@ import controller.commands.FinishedCommand;
 import controller.commands.LoadCommand;
 import controller.commands.MoveCommand;
 import controller.commands.SaveCommand;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import model.Model;
 import view.View;
 
@@ -20,12 +24,15 @@ public class MyController implements Controller,Observer{
 	private View view;
 	private Model model;
 	private CommandsQueue cq;
+	private IntegerProperty stepCounter;
 	private Map<String, Command> commands;
 	
 	public MyController(View v, Model m) {
 		this.view=v;
 		this.model=m;
 		initCommands();
+		stepCounter=new SimpleIntegerProperty();
+		v.bindCounter(stepCounter);
 		cq=new CommandsQueue();
 		cq.start();
 	}
@@ -35,13 +42,16 @@ public class MyController implements Controller,Observer{
 		commands.put("display lvl", new DisplayLevelCommand(model,view));
 		commands.put("load", new LoadCommand(model));
 		commands.put("save", new SaveCommand(model));
-	//	commands.put("exit", new ExitCommand(model,view));
+		commands.put("exit", new ExitCommand(this,model,view));
 		commands.put("lvl finished", new FinishedCommand(view));
 		
 	}
+	public void Stop(){
+		cq.stop();
+	}
 	@Override
 	public void update(Observable o, Object arg) {
-		System.out.println("Checking if  i got here(Update function)");
+
 		List<String> params=(List<String>)arg;
 		String commandkey=params.remove(0);
 		Command c= commands.get(commandkey);
@@ -50,6 +60,8 @@ public class MyController implements Controller,Observer{
 		{
 			return;
 		}
+		if(model.GetLvl()!=null)
+		stepCounter.setValue(model.GetLvl().getStepCounter());
 		c.setParams(params);
 		cq.insertCommand(c);
 	}

@@ -1,6 +1,5 @@
 package model.policy;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 import common.Box;
 import common.Level;
@@ -42,7 +41,6 @@ public class MyPolicy implements Policy {
 					if(nearObjX2 instanceof Wall||nearObjX2 instanceof Box)
 						return -1;
 					else{
-					System.out.println("grosman");
 					lvl.getMovAbleTable()[nearObjX2.getPos().getX()][nearObjX2.getPos().getY()]=nearObj;
 					lvl.getMovAbleTable()[i][j]=null;
 					nearObj.setPos(nearObjX2.getPos());

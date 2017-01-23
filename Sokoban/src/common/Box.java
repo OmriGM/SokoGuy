@@ -1,13 +1,10 @@
 package common;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import model.data.GameObject;
 import model.data.MoveAble;
-import model.policy.Policy;
 
 public class Box extends GameObject implements MoveAble {
-	//Policy policy;
+	
 	/**
 	 * 
 	 */

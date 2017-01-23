@@ -8,22 +8,29 @@ import java.util.Observable;
 import java.util.ResourceBundle;
 
 import common.Level;
-import javafx.event.Event;
+import javafx.beans.property.IntegerProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class SokobanViewer extends Observable implements View,Initializable {
 	@FXML
 	SokobanDisplayer sokobanDisplayer;
 	Level lvl;
+	@FXML
+	Label stepCounter;
+	@Override
+	public void bindCounter(IntegerProperty stepCounter) {
+		this.stepCounter.textProperty().bind(stepCounter.asString());
+		
+	}
 
-	
-	
+
 	@Override
 	public void displayLevel(Level lvl) {
 		sokobanDisplayer.setLvl(lvl);	
@@ -61,7 +68,7 @@ public class SokobanViewer extends Observable implements View,Initializable {
 		
 	}
 	@Override
-	public void exit() {
+	public void ExitCommand() {
 		List<String> params=new ArrayList<String>();
 		params.add("exit");	
 		setChanged();
@@ -71,8 +78,9 @@ public class SokobanViewer extends Observable implements View,Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
-		sokobanDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED,(e)->sokobanDisplayer.requestFocus());
+		//sokobanDisplayer.setLvl(lvl);
+		sokobanDisplayer.setFocusTraversable(true);
+	//	sokobanDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED,(e)->sokobanDisplayer.requestFocus());
 		sokobanDisplayer.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			
 			@Override
@@ -111,6 +119,15 @@ public class SokobanViewer extends Observable implements View,Initializable {
 			
 		});
 	}
+
+	@Override
+	public void Exit() {
+		
+		
+	}
+
+	
+
 }
 
 

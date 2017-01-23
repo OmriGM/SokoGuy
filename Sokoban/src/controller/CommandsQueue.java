@@ -53,6 +53,7 @@ public class CommandsQueue {
 	void stop(){
 		isStopped=true;
 		Thread.currentThread().stop();
+	
 	}
 		
 }
