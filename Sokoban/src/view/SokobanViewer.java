@@ -10,6 +10,9 @@ import java.util.ResourceBundle;
 import common.Level;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
+import javafx.event.Event;
+import javafx.event.EventDispatchChain;
+import javafx.event.EventDispatcher;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +23,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class SokobanViewer extends Observable implements View,Initializable {
 	@FXML
@@ -83,6 +87,15 @@ public class SokobanViewer extends Observable implements View,Initializable {
 	
 	public void setStage(Stage primaryStage) {
 		stage=primaryStage;	
+		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+			if	(event.getEventType()==WindowEvent.WINDOW_CLOSE_REQUEST){
+				ExitCommand();
+				}
+			}
+		});
 	}
 	
 	@Override
@@ -113,6 +126,12 @@ public class SokobanViewer extends Observable implements View,Initializable {
 				
 				@Override
 				public void handle(KeyEvent event) {
+					if(event.getCode()==KeyCode.ESCAPE){
+						List<String> params=new ArrayList<String>();
+						params.add("exit");
+						setChanged();
+						notifyObservers(params);
+					}
 					if(!finishedLvl){
 						if(event.getCode()==KeyCode.UP){
 							List<String> params=new ArrayList<String>();
