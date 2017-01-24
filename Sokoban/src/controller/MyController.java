@@ -13,6 +13,8 @@ import controller.commands.FinishedCommand;
 import controller.commands.LoadCommand;
 import controller.commands.MoveCommand;
 import controller.commands.SaveCommand;
+import controller.server.ClientHandler;
+import controller.server.MyServer;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -26,6 +28,7 @@ public class MyController implements Controller,Observer{
 	private Model model;
 	private CommandsQueue cq;
     IntegerProperty stepCounter;
+    private MyServer server;
 	private Map<String, Command> commands;
 	
 	public MyController(View v, Model m) {
@@ -48,7 +51,18 @@ public class MyController implements Controller,Observer{
 		
 	}
 	public void Stop(){
+
+		if (server!=null)
+		Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				server.stop();
+				
+			}
+		});
 		cq.stop();
+		
 	}
 	@Override
 	public void update(Observable o, Object arg) {
@@ -73,5 +87,10 @@ public class MyController implements Controller,Observer{
 		cq.insertCommand(c);
 		
 	}
+	public void setServer(MyServer server) {
+		this.server=server;
+		
+	}
+
 
 }

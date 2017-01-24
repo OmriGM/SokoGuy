@@ -32,7 +32,7 @@ public class CommandsQueue {
 				while(!isStopped){
 					Command cmd;
 					try {
-						cmd = queue.poll(5, TimeUnit.SECONDS);
+						cmd = queue.poll(1, TimeUnit.SECONDS);
 						if(cmd!=null)
 							try {
 								cmd.Execute();

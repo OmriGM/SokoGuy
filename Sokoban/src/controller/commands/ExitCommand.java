@@ -20,11 +20,12 @@ public class ExitCommand extends Command {
 	public void Execute() {
 		
 		model.Exit();
-		
+
 		Platform.runLater(new Runnable() {
 			
 			@Override
 			public void run() {
+				
 				view.Exit();
 				
 			}

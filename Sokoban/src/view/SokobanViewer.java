@@ -30,11 +30,17 @@ public class SokobanViewer extends Observable implements View,Initializable {
 	SokobanDisplayer sokobanDisplayer;
 	@FXML
 	Label stepCounter;
-	
+	SokobanSounds sounds;
     boolean finishedLvl=false;
 	Level lvl;
 	Stage stage;
 	
+	public SokobanViewer() {
+		sounds=new SokobanSounds();
+		sounds.backGroundSound();
+		
+	}
+
 	@Override
 	public void bindCounter(IntegerProperty stepCounter) {
 		this.stepCounter.textProperty().bind(stepCounter.asString());	
@@ -86,6 +92,7 @@ public class SokobanViewer extends Observable implements View,Initializable {
 	}
 	
 	public void setStage(Stage primaryStage) {
+		
 		stage=primaryStage;	
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
 			

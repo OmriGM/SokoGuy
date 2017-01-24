@@ -1,5 +1,11 @@
 package view;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import controller.MyController;
+import controller.server.ClientHandler;
+import controller.server.MyClientHandler;
+import controller.server.MyServer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,6 +16,7 @@ import model.MyModel;
 
 public class GUIRun extends Application implements Runnable{
 		private String[] args;
+		private  MyServer server;
 //		private boolean stop=false;
 //		
 //		
@@ -39,10 +46,26 @@ public class GUIRun extends Application implements Runnable{
 					MyController c= new MyController(ui,model);
 					model.addObserver(c);
 		            ui.addObserver(c);
+		            
+
 					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 					primaryStage.setScene(scene);
 					primaryStage.show();
 					
+					
+						//if there is a server open
+					if(getParameters().getRaw()!=null&&getParameters().getRaw().size()==2){//if args=2
+						if (getParameters().getRaw().get(0).equals("-server")){//if args[0] is -server
+							MyServer myServer=new MyServer(Integer.parseInt(getParameters().getRaw().get(1)), new MyClientHandler());//creates new server
+							if (myServer!=null)//if server creation succeed...
+							c.setServer(myServer);//set the controller server to this new server.(so the controller could stop it)
+							myServer.start();//start the server
+							
+							
+						}	
+					}
+
+
 					//primaryStage.close();
 					
 				} catch(Exception e) {
@@ -52,6 +75,11 @@ public class GUIRun extends Application implements Runnable{
 			@Override
 			public void run() {
 				launch(args);				
+			}
+			public void setServer(MyServer myServer) {
+				server=myServer;
+				System.out.println(server);
+				
 			}	
 }
 

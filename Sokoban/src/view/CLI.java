@@ -1,4 +1,4 @@
-//package view;
+package view;
 //
 //import java.io.FileNotFoundException;
 //import java.io.IOException;
@@ -13,7 +13,7 @@
 //import controller.commands.MoveCommand;
 //import controller.commands.SaveCommand;
 //
-//public class CLI {
+public class CLI {
 //	Command c;
 //	ArrayList<Level> lvl;
 //
@@ -112,4 +112,4 @@
 //	
 //	}
 //}
-//}
+}
