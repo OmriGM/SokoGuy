@@ -6,6 +6,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import controller.commands.Command;
+import controller.commands.FinishedCommand;
 
 public class CommandsQueue {
 	private BlockingQueue<Command> queue;
@@ -17,7 +18,7 @@ public class CommandsQueue {
 	}
 	
 	void insertCommand(Command command){
-		try {
+		try {		
 			queue.put(command);
 		} catch (InterruptedException e) {
 			e.printStackTrace();

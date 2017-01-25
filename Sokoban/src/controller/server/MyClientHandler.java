@@ -27,7 +27,7 @@ public class MyClientHandler extends Observable implements ClientHandler {
 		
 		if(clientInput.equals("display")){
 			List<String> params=new ArrayList<String>();
-			params.add("display");	
+			params.add("display lvl");	
 			setChanged();
 			notifyObservers(params);
 		}

@@ -1,9 +1,5 @@
 package view;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import controller.MyController;
-import controller.server.ClientHandler;
 import controller.server.MyClientHandler;
 import controller.server.MyServer;
 import javafx.application.Application;
@@ -17,13 +13,6 @@ import model.MyModel;
 public class GUIRun extends Application implements Runnable{
 		private String[] args;
 		private  MyServer server;
-//		private boolean stop=false;
-//		
-//		
-//
-//		public void setStop(boolean stop) {
-//			this.stop = stop;
-//		}
 
 
 			public void runTheGUI(String[] args){
@@ -45,8 +34,7 @@ public class GUIRun extends Application implements Runnable{
 					MyModel model = new MyModel();
 					MyController c= new MyController(ui,model);
 					model.addObserver(c);
-		            ui.addObserver(c);
-		            
+		            ui.addObserver(c);	            
 
 					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 					primaryStage.setScene(scene);
@@ -92,9 +80,9 @@ public class GUIRun extends Application implements Runnable{
 //				+ "*******************************************************************************************\n");
 //		System.out.println("\t\t\t\t\tMenu\n"
 //				+ "1.Load filename.xxx  		 -(txt,xml,obj,etc) you can load as many levels as you want\n"
-//				+ "2.Display 	      		 - displays the current level beeing played\n"
+//				+ "2.Display 	      		 - displays the current level being played\n"
 //				+ "3.Play level X       		 -(for exmaple: 'Play level 1', for playing the first level that was loaded\n"
-//				+ "4.Move (up,down,right,left)      - moves the character to the dierction you pick\n"
+//				+ "4.Move (up,down,right,left)      - moves the character to the direction you pick\n"
 //				+ "5.Save filename.xxx   		 -(txt,xml,obj,etc) saves the current level\n"
 //				+ "6.Exit                		 - Ends the game\n\n"
 //				+ "Have fun!\n");

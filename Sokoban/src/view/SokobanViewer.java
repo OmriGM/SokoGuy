@@ -39,11 +39,14 @@ public class SokobanViewer extends Observable implements View,Initializable {
 		sounds=new SokobanSounds();
 		sounds.backGroundSound();
 		
+		
 	}
 
 	@Override
 	public void bindCounter(IntegerProperty stepCounter) {
 		this.stepCounter.textProperty().bind(stepCounter.asString());	
+		this.stepCounter.setTranslateY(240);
+		this.stepCounter.setTranslateX(50);
 	}
 
 	@Override
@@ -117,7 +120,7 @@ public class SokobanViewer extends Observable implements View,Initializable {
 			public void run() {
 				Alert alert = new Alert(AlertType.INFORMATION);
 		        alert.setTitle("Level Finished");
-		        alert.setHeaderText("You Won! Congrats!");
+		        alert.setHeaderText("You Won! Congrats! took you only "+stepCounter.getText()+" moves");
 		        alert.setContentText("Press OK and load a new level");
 		        alert.showAndWait();				
 			}

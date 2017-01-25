@@ -32,7 +32,6 @@ public class MyModel extends Observable implements Model {
 		moveHappen=	(p.move(lvl, direction)>0);
 		if (moveHappen){
 			lvl.setStepCounter(lvl.getStepCounter()+1);
-			System.out.println(lvl.getStepCounter());
 			if(lvl.Finish()){
 				this.setChanged();
 				List<String> params=new LinkedList<String>();
