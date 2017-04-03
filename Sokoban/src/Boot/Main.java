@@ -1,8 +1,6 @@
 package Boot;
 
 
-import controller.server.MyClientHandler;
-import controller.server.MyServer;
 import view.GUIRun;
 
 
