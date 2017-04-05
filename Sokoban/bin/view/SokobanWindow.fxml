@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import view.SokobanDisplayer?>
+<?import javafx.scene.control.Label?>
+<?import com.sun.javafx.scene.control.skin.LabeledText?>
+
+<BorderPane  xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SokobanViewer">
+   <top>
+   
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Open level" onAction="#openFile" />
+                  <MenuItem mnemonicParsing="false" text="Save level" onAction="#saveFile" />   
+                  <MenuItem mnemonicParsing="false" text="Close" onAction="#ExitCommand" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+
+   <left>
+   		 <VBox  prefHeight="200.0" prefWidth="67.0" BorderPane.alignment="CENTER_RIGHT">
+  	 		<children>
+    	  		<Label  fx:id="stepCounter"  prefHeight="17.0" prefWidth="100.0" text="Counter: "  />
+  		    </children>
+         </VBox> 
+   </left>
+   <center>  		 
+      <SokobanDisplayer fx:id="sokobanDisplayer"  height="450.0" width="450.0" BorderPane.alignment="CENTER"
+       characterFileName="./resources/player.png"
+       wallFileName="./resources/wall.jpg"
+       targetFileName="./resources/target.jpg"
+       boxFileName="./resources/box.jpg"
+       floorFileName="./resources/floor.jpg" 
+       boxTargetFileName="./resources/boxTarget.jpg" />
+   </center>
+</BorderPane>

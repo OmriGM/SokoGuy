@@ -1,4 +1,3 @@
-/model/
-/recivers/
-/view/
 /Boot/
+/hibernate.cfg.out.xml
+/SokoDB/
