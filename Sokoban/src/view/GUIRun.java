@@ -1,10 +1,12 @@
 package view;
+import SokoDB.SokoDBManager;
 import controller.MyController;
 import controller.server.MyClientHandler;
 import controller.server.MyServer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.MyModel;
@@ -26,6 +28,7 @@ public class GUIRun extends Application implements Runnable{
 			@Override
 			public void start(Stage primaryStage) {
 				try {
+					
 					FXMLLoader fxmlLoader = new FXMLLoader(SokobanViewer.class.getResource("SokobanWindow.fxml"));
 					BorderPane root = fxmlLoader.load();
 					Scene scene = new Scene(root,600,500);
@@ -35,7 +38,7 @@ public class GUIRun extends Application implements Runnable{
 					MyController c= new MyController(ui,model);
 					model.addObserver(c);
 		            ui.addObserver(c);	            
-
+		            primaryStage.getIcons().add(new Image("file:resources/player.png"));
 					scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 					primaryStage.setScene(scene);
 					primaryStage.show();
@@ -59,6 +62,7 @@ public class GUIRun extends Application implements Runnable{
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
+				
 			}
 			@Override
 			public void run() {

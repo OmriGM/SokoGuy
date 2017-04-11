@@ -1,6 +1,7 @@
 package controller.commands;
 
 
+import SokoDB.SokoDBManager;
 import controller.Controller;
 import javafx.application.Platform;
 import model.Model;
@@ -27,6 +28,7 @@ public class ExitCommand extends Command {
 			public void run() {
 				
 				view.Exit();
+				SokoDBManager.getInstance().close();
 				
 			}
 		});

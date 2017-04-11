@@ -10,6 +10,7 @@ public class FinishedCommand extends Command {
 	
 	public FinishedCommand(View view) {
 		this.view=view;
+		
 	}
 	@Override
 	public void Execute() {

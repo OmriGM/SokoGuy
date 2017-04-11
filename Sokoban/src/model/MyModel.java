@@ -8,8 +8,11 @@ import java.io.OutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import common.Level;
+import javafx.beans.property.IntegerProperty;
 import model.data.LevelLoader;
 import model.data.LevelSaver;
 import model.data.LoadFactory;
@@ -20,7 +23,8 @@ import model.policy.Policy;
 public class MyModel extends Observable implements Model {
 	Level lvl;
 	Policy p=new MyPolicy();
-	
+	Timer t=null;
+	TimerTask tt;
 	@Override
 	public Level GetLvl() {
 		return lvl;
@@ -33,6 +37,7 @@ public class MyModel extends Observable implements Model {
 		if (moveHappen){
 			lvl.setStepCounter(lvl.getStepCounter()+1);
 			if(lvl.Finish()){
+				t.cancel();
 				this.setChanged();
 				List<String> params=new LinkedList<String>();
 				params.add("display lvl");
@@ -41,6 +46,9 @@ public class MyModel extends Observable implements Model {
 				params=new LinkedList<String>();
 				params.add("lvl finished");
 				this.notifyObservers(params);
+				params.add("stop timer");
+				this.notifyObservers(params);
+				
 			}
 			else{
 				this.setChanged();
@@ -56,6 +64,8 @@ public class MyModel extends Observable implements Model {
 		InputStream in;
 		LoadFactory lf;
 		LevelLoader levelLoader;
+		
+		
 		lf=new LoadFactory();
 		fin=fileName.substring(fileName.length()-3);
 		levelLoader=lf.CreateLevel(fin);
@@ -65,6 +75,19 @@ public class MyModel extends Observable implements Model {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		if(t!=null)
+			t.cancel();
+		t=new  Timer();
+		t.scheduleAtFixedRate(new TimerTask() {
+			
+			@Override
+			public void run() {		
+				lvl.setTimeCount(lvl.getTimeCount().get()+1);
+				//Counter.set(""+(lvl.setTimeCount(lvl.getTimeCount()+1)));
+			}
+		}, 0, 1000);
+		
+		
 		this.setChanged();
 		List<String> params=new LinkedList<String>();
 		params.add("display lvl");
@@ -89,7 +112,11 @@ public class MyModel extends Observable implements Model {
 
 	@Override
 	public void Exit() {
-		// TODO close server
+		if(t!=null)
+			
+			t.cancel();
 		
 	}
+
+
 }

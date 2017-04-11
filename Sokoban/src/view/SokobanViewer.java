@@ -5,20 +5,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
+import SokoDB.Score;
+import SokoDB.SokoDBManager;
 import common.Level;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
-import javafx.event.Event;
-import javafx.event.EventDispatchChain;
-import javafx.event.EventDispatcher;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
@@ -30,10 +29,15 @@ public class SokobanViewer extends Observable implements View,Initializable {
 	SokobanDisplayer sokobanDisplayer;
 	@FXML
 	Label stepCounter;
+	@FXML
+	Label timeCounter;
 	SokobanSounds sounds;
     boolean finishedLvl=false;
 	Level lvl;
 	Stage stage;
+	LevelTableViewer lvlTableViewer;
+	Score score;
+	String levelName;
 	
 	public SokobanViewer() {
 		sounds=new SokobanSounds();
@@ -41,6 +45,12 @@ public class SokobanViewer extends Observable implements View,Initializable {
 		
 		
 	}
+	@Override
+	public void bindTimeCounter(IntegerProperty timeCounter) {
+		this.timeCounter.textProperty().bind(timeCounter.asString());
+		
+	}
+
 
 	@Override
 	public void bindCounter(IntegerProperty stepCounter) {
@@ -65,6 +75,7 @@ public class SokobanViewer extends Observable implements View,Initializable {
 			List<String> params=new ArrayList<String>();
 			params.add("load");				
 			String filename=choosen.getPath();
+			levelName=choosen.getName().substring(0,choosen.getName().length()-4 );
 				params.add(filename);
 			setChanged();		
 			notifyObservers(params);
@@ -86,6 +97,16 @@ public class SokobanViewer extends Observable implements View,Initializable {
 		}
 		
 	}
+	
+	@Override
+	public void showLevelTable() {
+		
+		lvlTableViewer=new LevelTableViewer(levelName);
+		lvlTableViewer.start(new Stage());
+		
+	}
+	
+	
 	@Override
 	public void ExitCommand() {
 		List<String> params=new ArrayList<String>();
@@ -93,6 +114,8 @@ public class SokobanViewer extends Observable implements View,Initializable {
 		setChanged();
 		notifyObservers(params);	
 	}
+	
+	
 	
 	public void setStage(Stage primaryStage) {
 		
@@ -113,16 +136,27 @@ public class SokobanViewer extends Observable implements View,Initializable {
 		stage.close();
 	}
 	
-	public void lvlFinished(){
+	public void lvlFinished(){			
 		finishedLvl=true;
 		Platform.runLater(new Runnable() {
 			@Override
 			public void run() {
-				Alert alert = new Alert(AlertType.INFORMATION);
-		        alert.setTitle("Level Finished");
-		        alert.setHeaderText("You Won! Congrats! took you only "+stepCounter.getText()+" moves");
-		        alert.setContentText("Press OK and load a new level");
-		        alert.showAndWait();				
+				TextInputDialog dialog = new TextInputDialog("");
+				dialog.setTitle("Level Finished");
+				dialog.setHeaderText("You Won! Congrats! took you only "+stepCounter.getText()+" moves");
+				dialog.setContentText("Please enter your name:");
+
+				// Traditional way to get the response value.
+				Optional<String> result = dialog.showAndWait();
+				if (result.isPresent()){
+				    System.out.println("Your name: " + result.get());
+				    int steps= Integer.parseInt(stepCounter.getText());
+				    int time= Integer.parseInt(timeCounter.getText());
+					score = new Score(result.get(), levelName, steps, time);
+					SokoDBManager.getInstance().addScore(score);
+				}
+				
+				
 			}
 		});
 	}
@@ -130,7 +164,6 @@ public class SokobanViewer extends Observable implements View,Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		sokobanDisplayer.setFocusTraversable(true);
-		//	sokobanDisplayer.addEventFilter(MouseEvent.MOUSE_CLICKED,(e)->sokobanDisplayer.requestFocus());
 		
 			sokobanDisplayer.setOnKeyPressed(new EventHandler<KeyEvent>() {
 				
@@ -176,6 +209,9 @@ public class SokobanViewer extends Observable implements View,Initializable {
 			});	
 		
 	}
+
+
+	
 
 	
 }

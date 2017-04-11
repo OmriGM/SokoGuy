@@ -1,6 +1,7 @@
 package model;
 
 import common.Level;
+import javafx.beans.property.IntegerProperty;
 
 public interface Model {
 	Level GetLvl();

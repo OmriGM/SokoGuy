@@ -1,3 +1,8 @@
 /Boot/
-/hibernate.cfg.out.xml
 /SokoDB/
+/common/
+/controller/
+/hibernate.cfg.xml
+/model/
+/recivers/
+/view/

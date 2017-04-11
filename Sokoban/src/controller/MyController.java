@@ -13,7 +13,8 @@ import controller.commands.FinishedCommand;
 import controller.commands.LoadCommand;
 import controller.commands.MoveCommand;
 import controller.commands.SaveCommand;
-import controller.server.ClientHandler;
+import controller.commands.ShowLevelCommand;
+import controller.commands.ShowUserCommand;
 import controller.server.MyServer;
 import javafx.application.Platform;
 import javafx.beans.property.IntegerProperty;
@@ -28,6 +29,7 @@ public class MyController implements Controller,Observer{
 	private Model model;
 	private CommandsQueue cq;
     IntegerProperty stepCounter;
+    IntegerProperty timeCounter;
     private MyServer server;
 	private Map<String, Command> commands;
 	
@@ -37,6 +39,9 @@ public class MyController implements Controller,Observer{
 		initCommands();
 		stepCounter=new SimpleIntegerProperty();
 		v.bindCounter(stepCounter);
+		timeCounter=new SimpleIntegerProperty();
+		v.bindTimeCounter(timeCounter);
+		
 		cq=new CommandsQueue();
 		cq.start();
 	}
@@ -48,6 +53,9 @@ public class MyController implements Controller,Observer{
 		commands.put("save", new SaveCommand(model));
 		commands.put("exit", new ExitCommand(this,model,view));
 		commands.put("lvl finished", new FinishedCommand(view));
+		commands.put("stop timer", new FinishedCommand(view));
+		commands.put("showLevel", new ShowLevelCommand(view));
+		commands.put("showUser", new ShowUserCommand(view));
 		
 	}
 	public void Stop(){
@@ -78,8 +86,10 @@ public class MyController implements Controller,Observer{
 		Platform.runLater(new Runnable() {		
 			@Override
 			public void run() {
-				if(model.GetLvl()!=null)
-					stepCounter.set(model.GetLvl().getStepCounter());				
+				if(model.GetLvl()!=null){
+					stepCounter.set(model.GetLvl().getStepCounter());
+					timeCounter.set(model.GetLvl().getTimeCount().get());
+				}
 			}
 		});
 		

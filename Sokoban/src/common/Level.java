@@ -3,6 +3,8 @@ package common;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import model.data.GameObject;
 
 public class Level implements Serializable {
@@ -13,6 +15,8 @@ public class Level implements Serializable {
 	private static final long serialVersionUID = 1L;
 	int stepCounter=0;
 	int boxontarget=0;
+	IntegerProperty timeCount=null;
+	
 	
 	GameObject[][]  movAbleTable;
 	GameObject[][]  backgroundObjects;
@@ -32,7 +36,7 @@ public Level() {
 		wallArray=new ArrayList();
 		floorArray=new ArrayList();
 		targetArray=new ArrayList();
-		
+		timeCount=new SimpleIntegerProperty();
 		
 		
 	}
@@ -140,6 +144,12 @@ public Level() {
 	}
 	public void setStepCounter(int stepCounter) {
 		this.stepCounter = stepCounter;
+	}
+	public IntegerProperty getTimeCount() {
+		return timeCount;
+	}
+	public void setTimeCount(int timeCount) {
+		this.timeCount.set(timeCount);
 	}
 	public GameObject getNearObj(Position pos, String direction){
 		switch (direction) {
