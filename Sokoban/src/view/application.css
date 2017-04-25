@@ -1,8 +1,10 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
 .root {
      -fx-background-image: url("file:resources/familyGuy.jpg");
      
 }
+
 .vbox{
 	 -fx-background-color: #1d1d1d;
 }
@@ -80,7 +82,7 @@
 
 .menu-bar {
     -fx-background-color: derive(#1d1d1d,20%);
-    -fx-selection-bar: derive(-fx-background,-7%);
+    /*-fx-selection-bar: derive(-fx-background,-7%);*/
 }
 
 .menu-bar .label {

@@ -87,7 +87,7 @@ public class SokoDBManager {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
-		} finally {	
+		} finally {				
 			session.close();			
 		}
 		return list;

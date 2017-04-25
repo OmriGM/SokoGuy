@@ -42,8 +42,8 @@ public class LevelTableViewer extends Application {
         stage.setWidth(420);
         stage.setHeight(600);
         
-        
-        scene.getStylesheets().add("TableStyle.css");
+		
+        //scene.getStylesheets().add("TableStyle.css");
         
         
         Label label = new Label(levelName + " Score Table");
